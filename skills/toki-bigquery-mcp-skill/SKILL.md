@@ -120,6 +120,11 @@ python scripts/mcp_query.py "SELECT * FROM \`toki-data-platform-prod.crm.public_
 - **MCP Error**: Check the Toolbox server logs for details
 - **Empty results**: Verify table names (use `list_tables.py`) and check query syntax
 - **Wrong status values**: Remember status is case-sensitive ('Active' not 'active')
+- **Load profile / 15-minute data requested**: CRM database contains only **monthly aggregated** data. If user asks for "товаров профил", "15-minute intervals", or "hourly load profile":
+  1. Clarify they need interval-level measurements (not monthly sums)
+  2. Check if `public_load_profile` or `public_interval_readings` table exists
+  3. If not available, suggest they provide ERP export or SCADA data file
+  4. See `references/schema.md` → "LOAD PROFILE vs AGGREGATED DATA" section
 
 ## Configuration
 
